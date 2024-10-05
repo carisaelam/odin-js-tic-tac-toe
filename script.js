@@ -21,9 +21,14 @@ function board() {
     const row = coord[0];
     const col = coord[1];
 
+    if (row > BOARD_SIZE - 1 || col > BOARD_SIZE - 1 || row < 0 || col < 0) {
+      console.error('not on board');
+      return board;
+    }
+
     if (board[row][col] !== '_') {
       console.error('already taken');
-      return;
+      return board;
     }
 
     board[row][col] = piece;
@@ -31,11 +36,11 @@ function board() {
   };
 
   const clearBoard = () => {
-    board.map((row, i) => {
-      row.map((_, j) => {
-        updateCell([i, j], '_');
-      });
-    });
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      for (let j = 0; j < BOARD_SIZE; j++) {
+        board[i][j] = '_';
+      }
+    }
 
     return board;
   };
@@ -49,5 +54,7 @@ myBoard.clearBoard();
 myBoard.updateCell([0, 0], 'Z');
 myBoard.updateCell([0, 1], 'Z');
 myBoard.updateCell([1, 1], 'X');
+myBoard.updateCell([1, 2], 'X');
+myBoard.updateCell([1, 0], 'X');
 
 myBoard.printBoard();
