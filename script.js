@@ -18,7 +18,15 @@ function board() {
   }
 
   const updateCell = (coord, piece) => {
-    board[coord[0]][coord[1]] = piece;
+    const row = coord[0];
+    const col = coord[1];
+
+    if (board[row][col] !== '_') {
+      console.error('already taken');
+      return;
+    }
+
+    board[row][col] = piece;
     return board;
   };
 
@@ -37,15 +45,9 @@ function board() {
 
 const myBoard = board();
 
+myBoard.clearBoard();
 myBoard.updateCell([0, 0], 'Z');
 myBoard.updateCell([0, 1], 'Z');
-myBoard.updateCell([1, 1], '#');
-myBoard.updateCell([2, 2], 'P');
-myBoard.updateCell([1, 2], 'C');
-myBoard.updateCell([0, 2], 'Q');
-myBoard.clearBoard();
-myBoard.updateCell([0, 2], 'Q');
-myBoard.updateCell([0, 1], 'Q');
-myBoard.updateCell([1, 1], 'Q');
+myBoard.updateCell([1, 1], 'X');
 
 myBoard.printBoard();
