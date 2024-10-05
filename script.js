@@ -1,36 +1,51 @@
-const BOARD_SIZE = 3;
+function board() {
+  const BOARD_SIZE = 3;
 
-const boardInstance = [
-  ['_', '_', '_'],
-  ['_', '_', '_'],
-  ['_', '_', '_'],
-];
+  const board = [
+    ['_', '_', '_'],
+    ['_', '_', '_'],
+    ['_', '_', '_'],
+  ];
 
-function printBoard(board) {
-  for (let i = 0; i < BOARD_SIZE; i++) {
-    console.log(`${board[i][0]} | ${board[i][1]} | ${board[i][2]}`);
+  function printBoard() {
+    const printedBoard = [];
+    for (let i = 0; i < BOARD_SIZE; i++) {
+      const row = `${board[i][0]} | ${board[i][1]} | ${board[i][2]}`;
+      console.log(row);
+      printedBoard.push(row);
+    }
+    return printedBoard;
   }
-}
 
-function updateCell(coord, piece, board) {
-  board[coord[0]][coord[1]] = piece;
-  return board;
-}
+  const updateCell = (coord, piece) => {
+    board[coord[0]][coord[1]] = piece;
+    return board;
+  };
 
-function clearBoard(board) {
-  board.map((row, i) => {
-    row.map((_, j) => {
-      updateCell([i, j], '_', board);
+  const clearBoard = () => {
+    board.map((row, i) => {
+      row.map((_, j) => {
+        updateCell([i, j], '_');
+      });
     });
-  });
 
-  return board;
+    return board;
+  };
+
+  return { updateCell, clearBoard, printBoard };
 }
 
-updateCell([0, 0], 'Z', boardInstance);
-updateCell([0, 1], 'Z', boardInstance);
-updateCell([1, 1], 'Z', boardInstance);
-updateCell([2, 2], 'P', boardInstance);
-updateCell([1, 2], 'C', boardInstance);
-// clearBoard(boardInstance);
-printBoard(boardInstance);
+const myBoard = board();
+
+myBoard.updateCell([0, 0], 'Z');
+myBoard.updateCell([0, 1], 'Z');
+myBoard.updateCell([1, 1], '#');
+myBoard.updateCell([2, 2], 'P');
+myBoard.updateCell([1, 2], 'C');
+myBoard.updateCell([0, 2], 'Q');
+myBoard.clearBoard();
+myBoard.updateCell([0, 2], 'Q');
+myBoard.updateCell([0, 1], 'Q');
+myBoard.updateCell([1, 1], 'Q');
+
+myBoard.printBoard();
