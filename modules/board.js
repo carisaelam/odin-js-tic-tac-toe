@@ -54,34 +54,46 @@ export default function board() {
   // Check all horizontals for winning condition
   const checkHorizontalWin = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
-      if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+      if (
+        board[i][0] !== '_' &&
+        board[i][0] === board[i][1] &&
+        board[i][1] === board[i][2]
+      ) {
         return true;
-      } else return false;
+      }
     }
+    return false;
   };
 
   // Check all verticals for winning condition
   const checkVerticalWin = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
-      if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+      if (
+        board[0][i] !== '_' &&
+        board[0][i] === board[1][i] &&
+        board[1][i] === board[2][i]
+      )
         return true;
-      } else return false;
     }
+    return false;
   };
 
   // Check all diagonals for winning condition
   const checkDiagonalWin = () => {
-    if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
-      return true;
-    } else if (board[0][2] === board[1][1] && board[1][1] === board[0][2]) {
-      return true;
-    } else return false;
+    if (board[1][1] !== '_') {
+      if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+        return true;
+      }
+      if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+        return true;
+      }
+    }
+    return false;
   };
 
   // Checks for all winning conditions
   const checkWin = () => {
-    if (checkHorizontalWin() || checkVerticalWin() || checkDiagonalWin())
-      return true;
+    return checkHorizontalWin() || checkVerticalWin() || checkDiagonalWin();
   };
 
   return { updateCell, clearBoard, printBoard, checkWin };
