@@ -1,12 +1,16 @@
+// Builds, updates, prints board 
+
 export default function board() {
   const BOARD_SIZE = 3;
 
+  // Board instance, starts as blank
   const board = [
     ['_', '_', '_'],
     ['_', '_', '_'],
     ['_', '_', '_'],
   ];
 
+  // Prints and returns the current board instance
   function printBoard() {
     const printedBoard = [];
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -17,6 +21,7 @@ export default function board() {
     return printedBoard;
   }
 
+  // Updates cell at coord to piece
   const updateCell = (coord, piece) => {
     const row = coord[0];
     const col = coord[1];
@@ -35,6 +40,7 @@ export default function board() {
     return board;
   };
 
+  // Resets every cell to '_'
   const clearBoard = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
       for (let j = 0; j < BOARD_SIZE; j++) {
