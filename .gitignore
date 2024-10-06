@@ -1,2 +1,5 @@
 checklist.txt
 tempCodeRunnerFile.js
+node_modules/
+*.tmp
+*.temp
