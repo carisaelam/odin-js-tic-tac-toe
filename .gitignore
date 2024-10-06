@@ -3,3 +3,5 @@ tempCodeRunnerFile.js
 node_modules/
 *.tmp
 *.temp
+coverage/
+vitest.config.js

@@ -24,6 +24,7 @@ describe('Board', () => {
       ['_', '_', '_'],
       ['_', '_', '_'],
     ]);
+    console.error.mockRestore();
   });
 
   it('should return an error for occupied cells', () => {
@@ -36,6 +37,7 @@ describe('Board', () => {
       ['_', '_', '_'],
       ['_', '_', '_'],
     ]);
+    console.error.mockRestore();
   });
 
   // clearBoard tests
