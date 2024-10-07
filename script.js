@@ -4,7 +4,6 @@ import player from './modules/player.js';
 // DOM elements
 const startButton = document.querySelector('.start__button');
 
-// Game loop
 export default function playGame() {
   // DOM elements
   const resetButton = document.querySelector('.reset__button');
@@ -12,8 +11,6 @@ export default function playGame() {
   const currentPlayerContainer = document.querySelector(
     '.current__player__container'
   );
-  currentPlayerContainer.classList.remove('hidden', 'winner');
-
   const cells = document.querySelectorAll('.cell');
 
   // Initialize
@@ -24,8 +21,11 @@ export default function playGame() {
   let turnCount = 0;
   let currentPlayer = player1;
 
-  updatePlayerDisplay(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
+  // Initialize display
+  currentPlayerContainer.classList.remove('hidden', 'winner');
+  updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
 
+  // Main game loop
   function gameLoop(cell) {
     const coord = cell.id;
 
@@ -39,21 +39,21 @@ export default function playGame() {
           ? `${currentPlayer.name} wins!`
           : "It's a tie!";
         currentPlayerContainer.classList.add('winner');
-        updatePlayerDisplay(result);
+        updateMessage(result);
         return;
       }
 
       // Switch player
       currentPlayer = currentPlayer === player1 ? player2 : player1;
-      updatePlayerDisplay(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
+      updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
     } else {
       // If player clicks a cell that is occupied or otherwise invalid
-      updatePlayerDisplay('Invalid move! Try again.');
+      updateMessage('Invalid move! Try again.');
     }
   }
 
   // Update DOM with current player name
-  function updatePlayerDisplay(message) {
+  function updateMessage(message) {
     currentPlayerDisplay.textContent = message;
   }
 
@@ -62,7 +62,7 @@ export default function playGame() {
     gameBoard.clearBoard();
     turnCount = 0;
     currentPlayer = player1;
-    updatePlayerDisplay(`${currentPlayer.name}`);
+    updateMessage(`${currentPlayer.name}`);
     currentPlayerContainer.classList.remove('hidden', 'winner');
 
     cells.forEach((cell) => {
@@ -81,12 +81,10 @@ export default function playGame() {
       if (cell.textContent === '__') {
         gameLoop(cell);
       } else {
-        updatePlayerDisplay(`Cell already taken. Try again`);
+        updateMessage(`Cell already taken. Try again`);
       }
     });
   });
-
-  updatePlayerDisplay(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
 }
 
 startButton.addEventListener('click', playGame);
