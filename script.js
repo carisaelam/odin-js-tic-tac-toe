@@ -25,12 +25,13 @@ export default function playGame() {
       cell.textContent = '__';
     });
 
-    updateDisplay(`Current player: ${currentPlayer.name}`);
+    updatePlayerDisplay(`Current player: ${currentPlayer.name}`);
   });
 
-  updateDisplay(`Current player: ${currentPlayer.name}`);
+  updatePlayerDisplay(`Current player: ${currentPlayer.name}`);
 
-  function updateDisplay(message) {
+
+  function updatePlayerDisplay(message) {
     currentPlayerDisplay.textContent = message;
   }
 
@@ -47,15 +48,15 @@ export default function playGame() {
         const result = gameBoard.checkWin()
           ? `${currentPlayer.name} wins!`
           : "It's a tie!";
-        updateDisplay(result);
+        updatePlayerDisplay(result);
         return;
       }
 
       // Switch player
       currentPlayer = currentPlayer === player1 ? player2 : player1;
-      updateDisplay(`Current Player: ${currentPlayer.name}`);
+      updatePlayerDisplay(`Current Player: ${currentPlayer.name}`);
     } else {
-      updateDisplay('Invalid move! Try again.');
+      updatePlayerDisplay('Invalid move! Try again.');
     }
   }
 
@@ -64,12 +65,12 @@ export default function playGame() {
       if (cell.textContent === '__') {
         gameLoop(cell);
       } else {
-        updateDisplay(`Cell already taken. Try again`);
+        updatePlayerDisplay(`Cell already taken. Try again`);
       }
     });
   });
 
-  updateDisplay(`Current player: ${currentPlayer.name}`);
+  updatePlayerDisplay(`Current player: ${currentPlayer.name}`);
 }
 
 startButton.addEventListener('click', playGame);
