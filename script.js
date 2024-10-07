@@ -18,8 +18,8 @@ export default function playGame() {
   const gameBoard = board();
   const player1Name = prompt('Player 1, what is your name? ');
   const player2Name = prompt('Player 2, what is your name? ');
-  const player1 = player(player1Name || 'Player 1', 'X');
-  const player2 = player(player2Name || 'Player 2', 'O');
+  const player1 = player(player1Name.slice(0, 20) || 'Player 1', 'X');
+  const player2 = player(player2Name.slice(0, 20) || 'Player 2', 'O');
 
   let turnCount = 0;
   let currentPlayer = player1;
