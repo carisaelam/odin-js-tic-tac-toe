@@ -28,12 +28,12 @@ export default function board() {
 
     if (row > BOARD_SIZE - 1 || col > BOARD_SIZE - 1 || row < 0 || col < 0) {
       console.error('not on board');
-      return board;
+      return false;
     }
 
     if (board[row][col] !== '_') {
       console.error('already taken');
-      return board;
+      return false;
     }
 
     board[row][col] = piece;

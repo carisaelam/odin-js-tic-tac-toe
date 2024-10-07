@@ -16,29 +16,15 @@ describe('Board', () => {
       expect(updatedBoard[0][0]).toBe('X');
     });
 
-    it('should return an error for out-of-bounds coordinates', () => {
-      vi.spyOn(console, 'error');
+    it('should return false for out-of-bounds coordinates', () => {
       const originalBoard = gameBoard.updateCell([3, 3], 'X');
-      expect(console.error).toHaveBeenCalledWith('not on board');
-      expect(originalBoard).toEqual([
-        ['_', '_', '_'],
-        ['_', '_', '_'],
-        ['_', '_', '_'],
-      ]);
-      console.error.mockRestore();
+      expect(originalBoard).toBe(false);
     });
 
-    it('should return an error for occupied cells', () => {
-      vi.spyOn(console, 'error');
+    it('should return false for occupied cells', () => {
       gameBoard.updateCell([0, 0], 'X');
       const updatedBoard = gameBoard.updateCell([0, 0], 'O');
-      expect(console.error).toHaveBeenCalledWith('already taken');
-      expect(updatedBoard).toEqual([
-        ['X', '_', '_'],
-        ['_', '_', '_'],
-        ['_', '_', '_'],
-      ]);
-      console.error.mockRestore();
+      expect(updatedBoard).toBe(false);
     });
   });
 

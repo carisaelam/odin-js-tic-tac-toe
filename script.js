@@ -13,14 +13,22 @@ const myBoard = board();
 
 // Game loop
 function playGame() {
-  while (!myBoard.checkWin()) {
-    console.log('playGame running');
+  let turnCount = 0;
+  let symbol = 'X';
+
+  while (!myBoard.checkWin() && turnCount <= 9) {
+    console.log('playGame running...turn', turnCount);
     let coord = collectInput();
-    myBoard.updateCell(coord, 'X');
-    myBoard.printBoard();
-    console.log(myBoard.checkWin());
+    if (myBoard.updateCell(coord, symbol)) {
+      myBoard.printBoard();
+      turnCount++;
+      symbol === 'X' ? (symbol = 'O') : (symbol = 'X');
+      console.log(myBoard.checkWin());
+    }
   }
-  console.log('Game Over!');
+  if (turnCount >= 9) console.log('Tie');
+
+  console.log('Game Over! Turn count: ', turnCount);
 }
 
 function collectInput() {
