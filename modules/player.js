@@ -18,8 +18,6 @@ export default function player(name, symbol) {
 
   function handleClick(e) {
     lastInput = e.target.id;
-
-    e.target.textContent = getSymbol();
     e.target.removeEventListener('click', handleClick);
   }
 

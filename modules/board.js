@@ -23,6 +23,7 @@ export default function board() {
 
   // Updates cell at coord to piece
   const updateCell = (coord, piece) => {
+    console.log('updateCell running with coord', coord);
     const row = coord[0];
     const col = coord[1];
 
@@ -48,7 +49,7 @@ export default function board() {
         board[i][j] = '_';
       }
     }
-    printBoard()
+    printBoard();
     return board;
   };
 
