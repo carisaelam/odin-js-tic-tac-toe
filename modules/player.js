@@ -10,5 +10,16 @@ export default function player(name, symbol) {
     points++;
   }
 
-  return { name, symbol, getPoints, addPoint };
+  function getSymbol() {
+    return symbol;
+  }
+
+  function collectInput() {
+    const input = prompt('Select a cell');
+    const coord = [parseInt(input[0]), parseInt(input[1])];
+    console.log('You selected', coord);
+    return coord;
+  }
+
+  return { name, getSymbol, getPoints, addPoint, collectInput };
 }
