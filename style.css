@@ -1,12 +1,55 @@
-.gameboard__container {
+body {
+  background-color: rgb(231, 231, 231);
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  max-width: 18rem;
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 1rem;
+}
+
+.gameboard__container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .gameboard__row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
+.reset__button {
+  display: none;
+}
+
+.buttons__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hidden {

@@ -9,30 +9,38 @@
   <body>
     <h1>Tic Tac Toe</h1>
 
-    <h2 class="hidden current__player__container">
-      Current player: <span class="current__player"></span>
-    </h2>
+    <main>
+      <h2 class="hidden current__player__container">
+        <span class="current__player"></span>
+      </h2>
 
-    <div class="gameboard__container">
-      <div class="gameboard__row row0">
-        <div class="cell" id="00">__</div>
-        <div class="cell" id="01">__</div>
-        <div class="cell" id="02">__</div>
+      <div class="gameboard__container">
+        <div class="gameboard__row row0">
+          <div class="cell" id="00"></div>
+          <div class="cell" id="01"></div>
+          <div class="cell" id="02"></div>
+        </div>
+        <div class="gameboard__row row1">
+          <div class="cell" id="10"></div>
+          <div class="cell" id="11"></div>
+          <div class="cell" id="12"></div>
+        </div>
+        <div class="gameboard__row row2">
+          <div class="cell" id="20"></div>
+          <div class="cell" id="21"></div>
+          <div class="cell" id="22"></div>
+        </div>
       </div>
-      <div class="gameboard__row row1">
-        <div class="cell" id="10">__</div>
-        <div class="cell" id="11">__</div>
-        <div class="cell" id="12">__</div>
-      </div>
-      <div class="gameboard__row row2">
-        <div class="cell" id="20">__</div>
-        <div class="cell" id="21">__</div>
-        <div class="cell" id="22">__</div>
-      </div>
-    </div>
 
-    <button class="start__button">start</button>
-    <button class="reset__button">reset</button>
+      <div class="buttons__container">
+        <div class="start__reset__container">
+          <button class="start__button">Start</button>
+          <button class="reset__button">Clear</button>
+        </div>
+        <button class="new__game__button hidden">New Game</button>
+      </div>
+    </main>
+
     <script type="module" src="script.js"></script>
   </body>
 </html>

@@ -7,6 +7,7 @@ const startButton = document.querySelector('.start__button');
 export default function playGame() {
   // DOM elements
   const resetButton = document.querySelector('.reset__button');
+  const newGameButton = document.querySelector('.new__game__button');
   const currentPlayerDisplay = document.querySelector('.current__player');
   const currentPlayerContainer = document.querySelector(
     '.current__player__container'
@@ -15,18 +16,25 @@ export default function playGame() {
 
   // Initialize
   const gameBoard = board();
-  const player1 = player('P1', 'X');
-  const player2 = player('P2', 'O');
+  const player1Name = prompt('Player 1, what is your name? ');
+  const player2Name = prompt('Player 2, what is your name? ');
+  const player1 = player(player1Name || 'Player 1', 'X');
+  const player2 = player(player2Name || 'Player 2', 'O');
 
   let turnCount = 0;
   let currentPlayer = player1;
 
   // Initialize display
+  startButton.style.display = 'none';
+  resetButton.style.display = 'block';
+
+  resetGame();
   currentPlayerContainer.classList.remove('hidden', 'winner');
   updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
 
   // Main game loop
   function gameLoop(cell) {
+    newGameButton.classList.remove('hidden');
     const coord = cell.id;
 
     if (gameBoard.updateCell(coord, currentPlayer.getSymbol())) {
@@ -40,6 +48,9 @@ export default function playGame() {
           : "It's a tie!";
         currentPlayerContainer.classList.add('winner');
         updateMessage(result);
+        cells.forEach((cell) =>
+          cell.removeEventListener('click', handleCellClick)
+        );
         return;
       }
 
@@ -62,28 +73,35 @@ export default function playGame() {
     gameBoard.clearBoard();
     turnCount = 0;
     currentPlayer = player1;
-    updateMessage(`${currentPlayer.name}`);
+    updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
     currentPlayerContainer.classList.remove('hidden', 'winner');
 
     cells.forEach((cell) => {
-      cell.textContent = '__';
+      cell.textContent = '  ';
     });
+  }
+
+  // Refreshes page
+  function newGame() {
+    location.reload();
+  }
+
+  // Handles cell clicks
+  function handleCellClick(e) {
+    const cell = e.target;
+    if (cell.textContent === '  ') {
+      gameLoop(cell);
+    } else {
+      updateMessage(`Cell already taken. Try again`);
+    }
   }
 
   // EVENT LISTENERS
 
-  // Calls resetGame()
   resetButton.addEventListener('click', resetGame);
-
-  // Add click listener on each cell
+  newGameButton.addEventListener('click', newGame);
   cells.forEach((cell) => {
-    cell.addEventListener('click', (e) => {
-      if (cell.textContent === '__') {
-        gameLoop(cell);
-      } else {
-        updateMessage(`Cell already taken. Try again`);
-      }
-    });
+    cell.addEventListener('click', handleCellClick);
   });
 }
 

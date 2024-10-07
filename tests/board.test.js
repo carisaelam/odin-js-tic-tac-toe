@@ -33,7 +33,7 @@ describe('Board', () => {
     it('should clear the game board', () => {
       gameBoard.updateCell([0, 0], 'X');
       const clearedBoard = gameBoard.clearBoard();
-      expect(clearedBoard[0][0]).toEqual('_');
+      expect(clearedBoard[0][0]).toEqual(' ');
     });
   });
 

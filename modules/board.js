@@ -5,9 +5,9 @@ export default function board() {
 
   // Board instance, starts as blank
   const board = [
-    ['_', '_', '_'],
-    ['_', '_', '_'],
-    ['_', '_', '_'],
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
   ];
 
   // Prints and returns the current board instance
@@ -32,7 +32,7 @@ export default function board() {
       return false;
     }
 
-    if (board[row][col] !== '_') {
+    if (board[row][col] !== ' ') {
       console.error('already taken');
       return false;
     }
@@ -46,7 +46,7 @@ export default function board() {
     console.log('clear board running');
     for (let i = 0; i < BOARD_SIZE; i++) {
       for (let j = 0; j < BOARD_SIZE; j++) {
-        board[i][j] = '_';
+        board[i][j] = ' ';
       }
     }
     printBoard();
@@ -57,7 +57,7 @@ export default function board() {
   const checkHorizontalWin = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
       if (
-        board[i][0] !== '_' &&
+        board[i][0] !== ' ' &&
         board[i][0] === board[i][1] &&
         board[i][1] === board[i][2]
       ) {
@@ -71,7 +71,7 @@ export default function board() {
   const checkVerticalWin = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
       if (
-        board[0][i] !== '_' &&
+        board[0][i] !== ' ' &&
         board[0][i] === board[1][i] &&
         board[1][i] === board[2][i]
       )
@@ -82,7 +82,7 @@ export default function board() {
 
   // Check all diagonals for winning condition
   const checkDiagonalWin = () => {
-    if (board[1][1] !== '_') {
+    if (board[1][1] !== ' ') {
       if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
         return true;
       }
