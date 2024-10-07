@@ -1,34 +1,45 @@
 import board from './modules/board.js';
 import player from './modules/player.js';
 
-const myBoard = board();
-const player1 = player('P1', 'X');
-const player2 = player('P2', '0');
-
 // Game loop
 function playGame() {
+  const gameBoard = board();
+  const player1 = player('P1', 'X');
+  const player2 = player('P2', '0');
+
   let turnCount = 0;
-  let player = player1;
-  let symbol = player.getSymbol();
+  let currentPlayer = player1;
+  let currentSymbol = currentPlayer.getSymbol();
   let result;
 
-  while (!myBoard.checkWin() && turnCount < 9) {
-    console.log('playGame running...turn', turnCount);
-    console.log('player', player.name);
-    let coord = player.collectInput();
-    if (myBoard.updateCell(coord, symbol)) {
-      myBoard.printBoard();
+  function toggleSymbol(currentSymbol) {
+    return currentSymbol === 'X'
+      ? (currentSymbol = 'O')
+      : (currentSymbol = 'X');
+  }
+
+  function togglePlayer(currentPlayer) {
+    return currentPlayer === player1
+      ? (currentPlayer = player2)
+      : (currentPlayer = player1);
+  }
+
+  while (!gameBoard.checkWin() && turnCount < 9) {
+    let coord = currentPlayer.collectInput();
+    if (gameBoard.updateCell(coord, currentSymbol)) {
+      gameBoard.printBoard();
       turnCount++;
-      symbol === 'X' ? (symbol = 'O') : (symbol = 'X');
-      player === player1 ? (player = player2) : (player = player1);
-      console.log(myBoard.checkWin());
+      currentSymbol = toggleSymbol(currentSymbol);
+      currentPlayer = togglePlayer(currentPlayer);
     }
   }
-  if (!myBoard.checkWin()) result = 'tie';
-  else result = `${player.name} wins!`;
+
+  currentPlayer = togglePlayer(currentPlayer);
+  if (!gameBoard.checkWin()) result = 'tie';
+  else result = `${currentPlayer.name} wins!`;
 
   console.log(result);
-  return result;
+  return { result, currentPlayer, gameBoard };
 }
 
 playGame();
