@@ -8,14 +8,27 @@
   </head>
   <body>
     <h1>..</h1>
-    <form class="input__form" action="">
-      <label for="input"></label>
-      <input name="input" id="input" type="text" />
 
-      <button type="submit">submit</button>
-    </form>
+    <div class="gameboard__container">
+      <div class="gameboard__row row0">
+        <div class="cell" id="00">__</div>
+        <div class="cell" id="01">__</div>
+        <div class="cell" id="02">__</div>
+      </div>
+      <div class="gameboard__row row1">
+        <div class="cell" id="10">__</div>
+        <div class="cell" id="11">__</div>
+        <div class="cell" id="12">__</div>
+      </div>
+      <div class="gameboard__row row2">
+        <div class="cell" id="20">__</div>
+        <div class="cell" id="21">__</div>
+        <div class="cell" id="22">__</div>
+      </div>
+    </div>
     <p class="current__player"></p>
     <button class="start__button">start</button>
+    <button class="reset__button">reset</button>
     <script type="module" src="script.js"></script>
   </body>
 </html>

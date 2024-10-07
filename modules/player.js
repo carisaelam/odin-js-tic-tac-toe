@@ -1,5 +1,7 @@
 // Returns instance of player
 export default function player(name, symbol) {
+  let lastInput = null;
+
   let points = 0;
 
   function getPoints() {
@@ -14,15 +16,26 @@ export default function player(name, symbol) {
     return symbol;
   }
 
-  function collectInput(input = null) {
-    if (!input) {
-      input = prompt('Select a cell');
-      const coord = [parseInt(input[0]), parseInt(input[1])];
-      console.log('You selected', coord);
-      return coord;
-    }
-    return input;
+  function handleClick(e) {
+    lastInput = e.target.id;
+
+    e.target.textContent = getSymbol();
+    e.target.removeEventListener('click', handleClick);
   }
 
-  return { name, getSymbol, getPoints, addPoint, collectInput };
+  function collectInput() {
+    console.log('collectInput running');
+    console.log('lastInput', lastInput);
+
+    if (lastInput === null) return null;
+
+    const coord = lastInput
+      ? [parseInt(lastInput[0]), parseInt(lastInput[1])]
+      : null;
+    console.log('You selected', coord);
+
+    return coord;
+  }
+
+  return { name, getSymbol, getPoints, addPoint, collectInput, handleClick };
 }

@@ -42,12 +42,13 @@ export default function board() {
 
   // Resets every cell to '_'
   const clearBoard = () => {
+    console.log('clear board running');
     for (let i = 0; i < BOARD_SIZE; i++) {
       for (let j = 0; j < BOARD_SIZE; j++) {
         board[i][j] = '_';
       }
     }
-
+    printBoard()
     return board;
   };
 
