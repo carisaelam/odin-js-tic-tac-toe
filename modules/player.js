@@ -14,11 +14,14 @@ export default function player(name, symbol) {
     return symbol;
   }
 
-  function collectInput() {
-    const input = prompt('Select a cell');
-    const coord = [parseInt(input[0]), parseInt(input[1])];
-    console.log('You selected', coord);
-    return coord;
+  function collectInput(input = null) {
+    if (!input) {
+      input = prompt('Select a cell');
+      const coord = [parseInt(input[0]), parseInt(input[1])];
+      console.log('You selected', coord);
+      return coord;
+    }
+    return input;
   }
 
   return { name, getSymbol, getPoints, addPoint, collectInput };
