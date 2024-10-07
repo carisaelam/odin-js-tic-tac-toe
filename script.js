@@ -10,6 +10,7 @@ function playGame() {
   let turnCount = 0;
   let player = player1;
   let symbol = player.getSymbol();
+  let result;
 
   while (!myBoard.checkWin() && turnCount < 9) {
     console.log('playGame running...turn', turnCount);
@@ -23,8 +24,11 @@ function playGame() {
       console.log(myBoard.checkWin());
     }
   }
-  if (!myBoard.checkWin()) console.log('Tie');
-  else console.log(`${player.name} wins!`);
+  if (!myBoard.checkWin()) result = 'tie';
+  else result = `${player.name} wins!`;
+
+  console.log(result);
+  return result;
 }
 
 playGame();
