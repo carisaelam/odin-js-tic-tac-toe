@@ -8,3 +8,11 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.winner {
+  color: green;
+}
