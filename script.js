@@ -30,7 +30,7 @@ export default function playGame() {
 
   resetGame();
   currentPlayerContainer.classList.remove('hidden', 'winner');
-  updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
+  updateMessage(`${currentPlayer.name} as ${currentPlayer.getSymbol()}`);
 
   // Main game loop
   function gameLoop(cell) {
@@ -56,10 +56,10 @@ export default function playGame() {
 
       // Switch player
       currentPlayer = currentPlayer === player1 ? player2 : player1;
-      updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
+      updateMessage(`${currentPlayer.name} as ${currentPlayer.getSymbol()}`);
     } else {
       // If player clicks a cell that is occupied or otherwise invalid
-      updateMessage('Invalid move! Try again.');
+      updateMessage('Try again.');
     }
   }
 
@@ -73,7 +73,7 @@ export default function playGame() {
     gameBoard.clearBoard();
     turnCount = 0;
     currentPlayer = player1;
-    updateMessage(`${currentPlayer.name}—${currentPlayer.getSymbol()}`);
+    updateMessage(`${currentPlayer.name} as ${currentPlayer.getSymbol()}`);
     currentPlayerContainer.classList.remove('hidden', 'winner');
 
     cells.forEach((cell) => {
@@ -92,7 +92,7 @@ export default function playGame() {
     if (cell.textContent === '  ') {
       gameLoop(cell);
     } else {
-      updateMessage(`Cell already taken. Try again`);
+      updateMessage(`Try again`);
     }
   }
 
