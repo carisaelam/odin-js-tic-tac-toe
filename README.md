@@ -1,5 +1,6 @@
 
 # Tic Tac Toe
+#### [🔗 Play Now!](https://carisaelam-tic-tac-toe.netlify.app)
 
 ![Tic Tac Toe Demo](tic-tac-toe-preview.png)
 
@@ -26,8 +27,7 @@ This is a browser-based Tic Tac Toe game built with JavaScript. The game allows 
 
 
 
-## How to Play
-Visit the live site at: https://carisaelam-tic-tac-toe.netlify.app
+**Visit the live site at: https://carisaelam-tic-tac-toe.netlify.app**
 
 
 
